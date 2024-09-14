@@ -6,12 +6,14 @@ for (var i=0;i<noOfDrums;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var character = this.innerHTML;
         makeSound(character);
+        animation(character);
     });
 }
 
 //for keyboard press
 document.addEventListener("keydown", function (event) {
     makeSound(event.key);
+    animation(event.key);
 });
 
 
@@ -49,5 +51,13 @@ function makeSound(character){
 }
 
 
-// var drumSound = new Audio("./sounds/tom-1.mp3");
-// drumSound.play();
+function animation(character){
+    var activeButton = document.querySelector("."+character)
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    },100);
+    
+}
